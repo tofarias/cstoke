@@ -20,9 +20,9 @@ use Illuminate\Support\Str;
 $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'email' => 'admin@cstoke.com.br',
         'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        'password' => '$2y$12$v0QXjXp.kUecDI2X44hjk.9nLLI0y2C4FpIY5Lza58hjamkgoVraa',
         'remember_token' => Str::random(10),
     ];
 });
