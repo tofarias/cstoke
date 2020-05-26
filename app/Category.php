@@ -8,7 +8,6 @@ class Category extends Model
     protected $primaryKey = 'id';
     protected $table = 'prod_category';
     protected $attributes = [
-        'active' => true,
     ];
 
     public $timestamps = true;
