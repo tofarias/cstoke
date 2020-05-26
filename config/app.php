@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'CStoke'),
+    'name' => env('APP_NAME', 'App'),
 
     /*
     |--------------------------------------------------------------------------
@@ -169,11 +169,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        CStoke\Providers\AppServiceProvider::class,
+        CStoke\Providers\AuthServiceProvider::class,
+        // CStoke\Providers\BroadcastServiceProvider::class,
+        CStoke\Providers\EventServiceProvider::class,
+        CStoke\Providers\RouteServiceProvider::class,
 
     ],
 
