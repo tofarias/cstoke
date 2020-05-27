@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductOut extends Model
 {
     protected $primaryKey = 'id';
-    protected $table = 'prod_item_out';
+    protected $table = 'product_out';
     protected $attributes = [
     ];
 

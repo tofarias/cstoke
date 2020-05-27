@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductIn extends Model
 {
     protected $primaryKey = 'id';
-    protected $table = 'prod_item_in';
+    protected $table = 'product_in';
     protected $attributes = [
     ];
 
