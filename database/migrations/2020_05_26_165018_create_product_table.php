@@ -21,7 +21,7 @@ class CreateProductTable extends Migration
             $table->string('name');
             $table->string('model');
             $table->longText('description')->nullable();
-            $table->integer('minimum')->default(100);
+            $table->integer('lower_limit')->default(100);
             $table->boolean('active')->default(1);
             
             $table->foreignId('created_by')->references('id')->on('users');
