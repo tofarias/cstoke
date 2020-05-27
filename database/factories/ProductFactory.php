@@ -18,21 +18,18 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(Product::class, function (Faker $faker) {
+
+
+
     return [
         'name' => $faker->word,
         'model' => $faker->word,
         'description' => $faker->text(50),
-        'category_id' => function (array $post) use ($faker) {
-            return CStoke\Category::find( $faker->numberBetween($min = 1, $max = 9) );
-        },
-        'manufacturer_id' => function (array $post) use ($faker) {
-            return CStoke\Manufacturer::find( $faker->numberBetween($min = 1, $max = 11) );
-        },
-        'created_by' => function (array $post) use ($faker) {
-            return CStoke\User::findOrFail(1);
-        },
-        'updated_by' => function (array $post) use ($faker) {
-            return CStoke\User::findOrFail(1);
-        }
+        'category_id' => function (array $item) use ($faker) { return CStoke\Category::all()->pluck('id')->random(); },
+        'manufacturer_id' => function (array $item) use ($faker) { return CStoke\Manufacturer::all()->pluck('id')->random(); },
+        'created_by' => function (array $item) use ($faker) { return CStoke\User::findOrFail(1); },
+        'updated_by' => function (array $item) use ($faker) { return $item['created_by']; },
+        'created_at' => $faker->dateTimeInInterval('-1 month', '+ 3 days', 'America/Sao_Paulo'),
+        'updated_at' => function($item){ return $item['created_at']; }
     ];
 });
