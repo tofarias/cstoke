@@ -5,6 +5,7 @@
 use CStoke\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ $factory->define(User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => 'admin@cstoke.com.br',
         'email_verified_at' => now(),
-        'password' => '$2y$12$v0QXjXp.kUecDI2X44hjk.9nLLI0y2C4FpIY5Lza58hjamkgoVraa',
+        'password' => '$2y$10$VQUaeN0CCattQSeBL5lT2u125DM8xEY5oGXTGJImFKAP6nlwpba7y',//Hash::make(00000),
         'remember_token' => Str::random(10),
     ];
 });
