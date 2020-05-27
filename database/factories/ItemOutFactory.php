@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use CStoke\ItemOut;
+use CStoke\ProductOut;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -17,11 +17,11 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(ItemOut::class, function (Faker $faker) {
+$factory->define(ProductOut::class, function (Faker $faker) {
     return [
         'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 400, $max = 600),
         'amount' => $faker->numberBetween($min = 1, $max = 20),
-        'product_id' => function (array $item) use ($faker) { return CStoke\ItemIn::all()->pluck('product_id')->random(); },
+        'product_id' => function (array $item) use ($faker) { return CStoke\ProductIn::all()->pluck('product_id')->random(); },
         'created_by' => function (array $item) use ($faker) { return CStoke\User::findOrFail(1); },
         'updated_by' => function (array $item) use ($faker) { return $item['created_by']; },
         'created_at' => function (array $item) use ($faker) { 

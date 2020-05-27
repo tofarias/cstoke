@@ -3,7 +3,7 @@
 namespace CStoke;
 use Illuminate\Database\Eloquent\Model;
 
-class ItemOut extends Model
+class ProductOut extends Model
 {
     protected $primaryKey = 'id';
     protected $table = 'prod_item_out';

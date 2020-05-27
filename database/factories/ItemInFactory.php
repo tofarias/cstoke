@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use CStoke\ItemIn;
+use CStoke\ProductIn;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -17,7 +17,7 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(ItemIn::class, function (Faker $faker) {
+$factory->define(ProductIn::class, function (Faker $faker) {
     return [
         'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 100, $max = 500),
         'amount' => $faker->numberBetween($min = 100, $max = 200),
