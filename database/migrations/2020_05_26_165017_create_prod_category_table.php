@@ -17,7 +17,7 @@ class CreateProdCategoryTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->longText('description')->nullable();
-            $table->boolean('active')->default(1);
+            
             $table->timestamps();
         });
     }
