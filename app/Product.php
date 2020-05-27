@@ -23,6 +23,15 @@ class Product extends Model
         'name', 'model','description'
     ];
 
+    public function productsIn()
+    {
+        return $this->hasMany(ProductIn::class);
+    }
+
+    public function productsOut()
+    {
+        return $this->hasMany(ProductOut::class);
+    }
 
     public function manufacturer(){
         return $this->belongsTo(Manufacturer::class);
