@@ -20,10 +20,10 @@ class ProductOut extends Model
     protected $fillable = [
         'price', 'amount'
     ];
-
+    
 
     public function product(){
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
     public function category(){
