@@ -19,11 +19,9 @@ use Illuminate\Support\Str;
 
 $factory->define(Product::class, function (Faker $faker) {
 
-
-
     return [
         'name' => $faker->word,
-        'model' => $faker->word,
+        'model' => $faker->unique()->word,
         'description' => $faker->text(50),
         'category_id' => function (array $item) use ($faker) { return CStoke\Category::all()->pluck('id')->random(); },
         'manufacturer_id' => function (array $item) use ($faker) { return CStoke\Manufacturer::all()->pluck('id')->random(); },
