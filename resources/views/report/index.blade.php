@@ -58,7 +58,7 @@
                                 <td>{!! $item->product->name !!}</td>
                                 <td>{!! $item->product->manufacturer->name !!}</td>
                                 <td>{!! $item->product->model !!}</td>
-                                <td align="center">{!! $item->sku !!}</td>
+                                <td align="center">{!! $item->product->sku !!}</td>
                                 <td align="center">{!! $item->created_at->format("d/m/Y h:i") !!}</td>
                             </tr>
                             @endforeach

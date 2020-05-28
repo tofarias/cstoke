@@ -48,9 +48,10 @@ Route::get('/produtosin', 'ProductInController@index')->name('productin.list');
 Route::get('/produtosin/novo', 'ProductInController@showRegisterForm')->name('productin.showRegisterForm');
 Route::post('/produtosin/novo', 'ProductInController@insert')->name('productin.insert');
 
-Route::get('/produtosin/{id}/editar', 'ProductInController@showEditForm')->name('showEditForm');
-Route::post('/produtosin/editar', 'ProductInController@update')->name('productin.update');
 
-Route::post('/produtosin/{id}/deletar', 'ProductInController@delete')->name('productin.delete');
+// Saída de produtos
 
+Route::get('/produtosout', 'ProductOutController@index')->name('productout.list');
 
+Route::get('/produtosout/novo', 'ProductOutController@showRegisterForm')->name('productout.showRegisterForm');
+Route::post('/produtosout/novo', 'ProductOutController@insert')->name('productout.insert');
