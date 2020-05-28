@@ -18,7 +18,7 @@ class ProductIn extends Model
      * @var array
      */
     protected $fillable = [
-        'price', 'amount', 'weight'
+        'price', 'amount', 'weight', 'product_id'
     ];
 
 
