@@ -92,7 +92,8 @@ class ProductController extends Controller
             'success' => true,
             'id' => $product->id,
             'manufacturer' => $product->manufacturer->name,
-            'model' => $product->model
+            'model' => $product->model,
+            'sku' => $product->sku
         ]);
     }
 }
