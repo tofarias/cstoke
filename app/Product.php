@@ -20,7 +20,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'model','description'
+        'name', 'model','description', 'category_id', 'manufacturer_id'
     ];
 
     public function productsIn()
