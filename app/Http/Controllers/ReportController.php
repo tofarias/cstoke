@@ -26,13 +26,15 @@ class ReportController extends Controller
         $productsIn = new \CStoke\ProductIn();
 
         $productsIn = $productsIn->where('created_at', 'like', $date.'%');
-        $productsIn = $productsIn->whereHas('product',function($query){
+        $products = $productsIn->whereHas('product',function($query){
             return $query->where('active',1);
-        })->get();
+        })->orderBy('created_at','desc')->paginate(15);
 
-        //dd( Array('itens' => $productsIn->toArray(), 'total' => $productsIn->count()) );
+        $total = $products->count();
 
-        return view('home');
+        $title = 'Produtos removidos do estoque';
+
+        return view('report.index',compact('products','total', 'title'));
     }
 
     /**
@@ -42,25 +44,17 @@ class ReportController extends Controller
      */
     public function listProductsOut($date)
     {
-        $productsOut = new \CStoke\ProductIn();
+        $productsOut = new \CStoke\ProductOut();
 
         $productsOut = $productsOut->where('created_at', 'like', $date.'%');
-        $productsOut = $productsOut->whereHas('product',function($query){
+        $products   = $productsOut->whereHas('product',function($query){
             return $query->where('active',1);
-        })->get();
+        })->orderBy('created_at','desc')->paginate(15);
 
-        //dd( Array('itens' => $productsOut->toArray(), 'total' => $productsOut->count()) );
+        $total = $products->count();
 
-        return view('home');
-    }
+        $title = 'Produtos em estoque';
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
-        return view('home');
+        return view('report.index',compact('products','total', 'title'));
     }
 }
