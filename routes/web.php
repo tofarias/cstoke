@@ -23,8 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Relatórios
 
-Route::get('/relatorio/{date}/productsin', 'ReportController@listProductsIn')->name('listProductsIn');
-Route::get('/relatorio/{date}/productsout', 'ReportController@listProductsOut')->name('listProductsOut');
+Route::get('/relatorio/{date}/produtosin', 'ReportController@listProductsIn')->name('listProductsIn');
+Route::get('/relatorio/{date}/produtosout', 'ReportController@listProductsOut')->name('listProductsOut');
 
 // Cadatro de produtos
 
