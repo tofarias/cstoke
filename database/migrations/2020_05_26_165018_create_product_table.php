@@ -22,6 +22,7 @@ class CreateProductTable extends Migration
             $table->string('model');
             $table->longText('description')->nullable();
             $table->integer('lower_limit')->default(100);
+            $table->string('sku')->unique();
             $table->boolean('active')->default(1);
             
             $table->foreignId('created_by')->references('id')->on('users');
