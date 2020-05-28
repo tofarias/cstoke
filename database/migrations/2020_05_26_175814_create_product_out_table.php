@@ -20,6 +20,7 @@ class CreateProductOutTable extends Migration
             
             $table->decimal('price', 8,2);
             $table->integer('amount');
+            $table->string('origin')->nullable();
             
             $table->foreignId('created_by')->references('id')->on('users');
             $table->foreignId('updated_by')->references('id')->on('users');
