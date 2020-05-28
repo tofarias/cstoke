@@ -19,6 +19,8 @@ class ProductObserver
 
     public function creating(Product $product)
     {
+        $product->sku = \sku();
+
         $product->created_by = 1;
         $product->updated_by = 1;
 
