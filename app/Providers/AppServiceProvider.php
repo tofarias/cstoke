@@ -3,8 +3,8 @@
 namespace CStoke\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use CStoke\Product;
-use CStoke\Observers\ProductObserver;
+use CStoke\{Product,ProductIn};
+use CStoke\Observers\{ProductObserver,ProductInObserver};
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Product::observe(ProductObserver::class);
+        ProductIn::observe(ProductInObserver::class);        
     }
 }
