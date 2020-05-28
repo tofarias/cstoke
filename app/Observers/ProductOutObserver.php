@@ -4,12 +4,16 @@ namespace CStoke\Observers;
 
 use Illuminate\Support\Facades\Auth;
 use CStoke\ProductOut;
+use CStoke\ProductIn;
 
 class ProductOutObserver
 {
     public function saving(ProductOut $productOut)
     {
-
+        dd( $productOut->product->id );
+        $productIn = ProductIn::findOrFail( $productOut->product->id );
+        dd( $productIn );
+        dd( $productOut );
     }
 
     public function saved(ProductOut $productOut)

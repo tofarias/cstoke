@@ -29,15 +29,9 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"><h3>{!! $title !!} <span class="badge badge-lg badge-info">{!! $total !!}</span></h3></div>
+                <div class="card-header"><h3>{!! $title !!} <span class="badge badge-lg badge-info">{!! $productItens->count() !!}</span></h3></div>
 
                 <div class="card-body">
-
-                    <div class="container">
-                        <div class="row justify-content-md-center">
-                            {!! $productItens->links() !!}
-                        </div>
-                    </div>
                     
                     {!! Form::token() !!}
                     <table class="table table-striped">
@@ -48,6 +42,7 @@
                                 <th scope="col">Fabricante</th>
                                 <th scope="col">Modelo</th>
                                 <th scope="col">SKU</th>
+                                <th scope="col">Quantidade</th>
                                 <th scope="col">{!! $labelData !!}</th>
                             </tr>
                         </thead>
@@ -55,21 +50,16 @@
                             @foreach( $productItens as $key => $item )
                             <tr title="{!! $item->id !!}">
                                 <th scope="row">{!! ($key+1) !!}</th>
-                                <td>{!! $item->product->name !!}</td>
-                                <td>{!! $item->product->manufacturer->name !!}</td>
-                                <td>{!! $item->product->model !!}</td>
-                                <td align="center">{!! $item->product->sku !!}</td>
+                                <td>{!! $item->name !!}</td>
+                                <td>{!! $item->manufacturer_name !!}</td>
+                                <td>{!! $item->model !!}</td>
+                                <td align="center">{!! $item->sku !!}</td>
+                                <td align="center">{!! $item->amount !!}</td>
                                 <td align="center">{!! $item->created_at->format("d/m/Y h:i") !!}</td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-
-                    <div class="container">
-                        <div class="row justify-content-md-center">
-                            {!! $productItens->links() !!}
-                        </div>
-                    </div>
 
                 </div>
             </div>

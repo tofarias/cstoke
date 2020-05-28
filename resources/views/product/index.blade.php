@@ -30,7 +30,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"><h3>Produtos Cadastrados <span id="total" class="badge badge-lg badge-info">{!! $total !!}</span></h3></div>
+                <div class="card-header"><h3>Produtos Cadastrados <span id="total" class="badge badge-lg badge-info">{!! $products->count() !!}</span></h3></div>
 
                 <div class="card-body">
                     

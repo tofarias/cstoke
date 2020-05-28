@@ -22,20 +22,31 @@ class ReportController extends Controller
      * @return void
      */
     public function listProductsIn($date)
-    {
-        $productsIn = new \CStoke\ProductIn();
-
-        $productsIn = $productsIn->where('created_at', 'like', $date.'%');
-        $productItens = $productsIn->whereHas('product',function($query){
-            return $query->where('active',1);
-        })->orderBy('created_at','desc');
-
-        $total = $productItens->count();
-        $productItens = $productItens->paginate(15);        
+    {       
+        $productItens = \CStoke\ProductIn::where('product_in.created_at', 'like', $date.'%')
+                                        ->join('product', 'product.id','=','product_in.product_id')
+                                        ->join('prod_manufacturer', 'prod_manufacturer.id','=','product.manufacturer_id')
+                                        ->select(
+                                            'product.id',
+                                            'product.name',
+                                            'product.model',
+                                            'product.sku',
+                                            'prod_manufacturer.name as manufacturer_name',
+                                            \DB::raw('(select sum(amount) from product_in p1 where p1.product_id = product_in.product_id  group by p1.product_id ) as amount'),
+                                            \DB::raw("DATE_FORMAT(product_in.created_at, '%Y-%m-%d') as created_at")
+                                            )->groupBy(
+                                                'product.id',
+                                                'product.name',
+                                                'product.model',
+                                                'product.sku',
+                                                'prod_manufacturer.name',
+                                                \DB::raw("DATE_FORMAT(product_in.created_at, '%Y-%m-%d')")
+                                                )->get();
+                                                
         $title = 'Produtos em estoque';
         $labelData = 'Dt. Entrada';
 
-        return view('report.index',compact('productItens','total', 'title','labelData'));
+        return view('report.index',compact('productItens', 'title','labelData'));
     }
 
     /**
@@ -45,18 +56,29 @@ class ReportController extends Controller
      */
     public function listProductsOut($date)
     {
-        $productsOut = new \CStoke\ProductOut();
-
-        $productsOut = $productsOut->where('created_at', 'like', $date.'%');
-        $productItens   = $productsOut->whereHas('product',function($query){
-            return $query->where('active',1)->select(['sku']);
-        })->orderBy('created_at','desc');
-
-        $total = $productItens->count();
-        $productItens = $productItens->paginate(15);
+        $productItens = \CStoke\ProductOut::where('product_out.created_at', 'like', $date.'%')
+                                        ->join('product', 'product.id','=','product_out.product_id')
+                                        ->join('prod_manufacturer', 'prod_manufacturer.id','=','product.manufacturer_id')
+                                        ->select(
+                                            'product.id',
+                                            'product.name',
+                                            'product.model',
+                                            'product.sku',
+                                            'prod_manufacturer.name as manufacturer_name',
+                                            \DB::raw('(select sum(amount) from product_out p1 where p1.product_id = product_out.product_id  group by p1.product_id ) as amount'),
+                                            \DB::raw("DATE_FORMAT(product_out.created_at, '%Y-%m-%d') as created_at")
+                                            )->groupBy(
+                                                'product.id',
+                                                'product.name',
+                                                'product.model',
+                                                'product.sku',
+                                                'prod_manufacturer.name',
+                                                \DB::raw("DATE_FORMAT(product_out.created_at, '%Y-%m-%d')")
+                                                )->get();
+                                                
         $title = 'Produtos removidos do estoque';
         $labelData = 'Dt. Saída';
 
-        return view('report.index',compact('productItens','total', 'title','labelData'));
+        return view('report.index',compact('productItens','title','labelData'));
     }
 }

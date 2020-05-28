@@ -36,9 +36,9 @@ class DatabaseSeeder extends Seeder
         factory(CStoke\Manufacturer::class)->create(['name' => 'abril']);
         factory(CStoke\Manufacturer::class)->create(['name' => 'saraiva']);
 
-        factory(CStoke\Product::class, 50)->create();
+        factory(CStoke\Product::class, 1)->create();
 
-        factory(CStoke\ProductIn::class, 100)->create();
-        factory(CStoke\ProductOut::class, 30)->create();
+        // factory(CStoke\ProductIn::class, 100)->create();
+        // factory(CStoke\ProductOut::class, 6)->create();
     }
 }

@@ -56,7 +56,7 @@ class ProductController extends Controller
             
             return redirect()
                         ->route('product.showRegisterForm')
-                        ->with('exception', 'TESTE')
+                        ->with('exception', $e->getMessage())
                         ->withInput();
         }
     }
@@ -87,7 +87,7 @@ class ProductController extends Controller
                 
             return redirect()
                         ->route('product.showRegisterForm')
-                        ->with('exception', 'TESTE')
+                        ->with('exception', $e->getMessage())
                         ->withInput();
         }
     }

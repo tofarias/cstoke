@@ -4,6 +4,7 @@ namespace CStoke\Http\Controllers;
 
 use Illuminate\Http\Request;
 use CStoke\{Category,Manufacturer,Product,ProductIn};
+use CStoke\Http\Requests\ProductInInsertRequest;
 
 class ProductInController extends Controller
 {
@@ -42,11 +43,23 @@ class ProductInController extends Controller
         return view('productin.register_form', compact('products','manufacturers'));
     }
 
-    public function insert(Request $request){
+    public function insert(ProductInInsertRequest $request){
 
-        $productIn = new ProductIn($request->all());
-        $productIn->save();
+        try{
+            $productIn = new ProductIn($request->all());
+            $productIn->save();
 
-        return redirect()->route('listProductsIn',['2020-05-28']);
+            $product = Product::findOrFail($request->product_id);
+            $product->amount = $productIn->amount;
+            $product->save();
+
+            return redirect()->route('listProductsIn',[ date('Y-m-d') ]);
+        }catch (\Exception $e) {
+            
+            return redirect()
+                        ->back()
+                        ->with('exception', $e->getMessage())
+                        ->withInput();
+        }
     }
 }
