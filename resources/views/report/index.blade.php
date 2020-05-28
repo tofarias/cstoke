@@ -35,7 +35,7 @@
 
                     <div class="container">
                         <div class="row justify-content-md-center">
-                            {!! $products->links() !!}
+                            {!! $productItens->links() !!}
                         </div>
                     </div>
                     
@@ -47,17 +47,19 @@
                                 <th scope="col">Nome</th>
                                 <th scope="col">Fabricante</th>
                                 <th scope="col">Modelo</th>
-                                <th scope="col">Dt. Entrada</th>
+                                <th scope="col">SKU</th>
+                                <th scope="col">{!! $labelData !!}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach( $products as $key => $productIn )
-                            <tr title="{!! $productIn->id !!}">
+                            @foreach( $productItens as $key => $item )
+                            <tr title="{!! $item->id !!}">
                                 <th scope="row">{!! ($key+1) !!}</th>
-                                <td>{!! $productIn->product->name !!}</td>
-                                <td>{!! $productIn->product->manufacturer->name !!}</td>
-                                <td>{!! $productIn->product->model !!}</td>
-                                <td align="center">{!! $productIn->created_at->format("d/m/Y h:i") !!}</td>
+                                <td>{!! $item->product->name !!}</td>
+                                <td>{!! $item->product->manufacturer->name !!}</td>
+                                <td>{!! $item->product->model !!}</td>
+                                <td align="center">{!! $item->sku !!}</td>
+                                <td align="center">{!! $item->created_at->format("d/m/Y h:i") !!}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -65,7 +67,7 @@
 
                     <div class="container">
                         <div class="row justify-content-md-center">
-                            {!! $products->links() !!}
+                            {!! $productItens->links() !!}
                         </div>
                     </div>
 

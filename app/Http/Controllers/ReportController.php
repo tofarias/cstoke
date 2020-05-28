@@ -26,15 +26,15 @@ class ReportController extends Controller
         $productsIn = new \CStoke\ProductIn();
 
         $productsIn = $productsIn->where('created_at', 'like', $date.'%');
-        $products = $productsIn->whereHas('product',function($query){
+        $productItens = $productsIn->whereHas('product',function($query){
             return $query->where('active',1);
         })->orderBy('created_at','desc')->paginate(15);
 
-        $total = $products->count();
-
+        $total = $productItens->count();
         $title = 'Produtos em estoque';
+        $labelData = 'Dt. Entrada';
 
-        return view('report.index',compact('products','total', 'title'));
+        return view('report.index',compact('productItens','total', 'title','labelData'));
     }
 
     /**
@@ -47,14 +47,14 @@ class ReportController extends Controller
         $productsOut = new \CStoke\ProductOut();
 
         $productsOut = $productsOut->where('created_at', 'like', $date.'%');
-        $products   = $productsOut->whereHas('product',function($query){
+        $productItens   = $productsOut->whereHas('product',function($query){
             return $query->where('active',1);
         })->orderBy('created_at','desc')->paginate(15);
 
-        $total = $products->count();
-
+        $total = $productItens->count();
         $title = 'Produtos removidos do estoque';
+        $labelData = 'Dt. Saída';
 
-        return view('report.index',compact('products','total', 'title'));
+        return view('report.index',compact('productItens','total', 'title','labelData'));
     }
 }
