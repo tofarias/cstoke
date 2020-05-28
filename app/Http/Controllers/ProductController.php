@@ -4,6 +4,7 @@ namespace CStoke\Http\Controllers;
 
 use Illuminate\Http\Request;
 use CStoke\{Category,Manufacturer,Product};
+use CStoke\Http\Requests\ProductInsertRequest;
 
 class ProductController extends Controller
 {
@@ -24,8 +25,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with(['category','manufacturer'])->get();
+        $products = Product::with(['category','manufacturer'])->orderBy('created_at','desc');
+        
         $total = $products->count();
+        $products = $products->paginate(15);
 
         return view('product.index', compact('products','total'));
     }
@@ -41,12 +44,21 @@ class ProductController extends Controller
         return view('product.register_form', compact('categories','manufacturers'));
     }
 
-    public function insert(Request $data){
+    public function insert(ProductInsertRequest $request){
+        try{
+            $validated = $request->validated();
 
-        $product = new Product($data->all());
-        $product->save();
-
-        return redirect()->route('product.list');
+            $product = new Product($request->all());
+            $product->save();
+            
+            return redirect()->route('product.list');
+        }catch (\Exception $e) {
+            
+            return redirect()
+                        ->route('product.showRegisterForm')
+                        ->with('exception', 'TESTE')
+                        ->withInput();
+        }
     }
 
     public function showEditForm(Request $request, $id)
@@ -62,13 +74,22 @@ class ProductController extends Controller
         return view('product.edit_form', compact('product', 'categories','manufacturers'));
     }
 
-    public function update(Request $request)
+    public function update(ProductInsertRequest $request)
     {
-        $product = Product::findOrFail($request->id);
-        $product->fill($request->all());
-        $product->save();
-        
-        return redirect()->route('product.list');
+        try
+        {
+            $product = Product::findOrFail($request->id);
+            $product->fill($request->all());
+            $product->save();
+            
+            return redirect()->route('product.list');
+        }catch (\Exception $e) {
+                
+            return redirect()
+                        ->route('product.showRegisterForm')
+                        ->with('exception', 'TESTE')
+                        ->withInput();
+        }
     }
 
     public function delete(Request $request)
