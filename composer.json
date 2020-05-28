@@ -43,6 +43,9 @@
         }
     },
     "autoload": {
+        "files": [
+            "app/Models/helpers.php"
+        ],
         "psr-4": {
             "CStoke\\": "app/"
         },
