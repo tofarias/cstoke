@@ -19,13 +19,13 @@ class ProductObserver
 
     public function creating(Product $product)
     {
+        $product->created_by = 1;
+        $product->updated_by = 1;
+
         if( Auth::check() ){
             $product->created_by = Auth::id();
             $product->updated_by = Auth::id();
-        }else{
-            $product->created_by = 1;
-            $product->updated_by = 1;
-        }        
+        }
     }
 
     /**
