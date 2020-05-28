@@ -20,5 +20,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/report/{date}/productsin', 'ReportController@listProductsIn')->name('reportProductsIn');
-Route::get('/report/{date}/productsout', 'ReportController@listProductsOut')->name('reportProductsOut');
+Route::get('/report/{date}/productsin', 'ReportController@listProductsIn')->name('listProductsIn');
+Route::get('/report/{date}/productsout', 'ReportController@listProductsOut')->name('listProductsOut');
+
+Route::get('/products', 'ProductController@index')->name('product.list');
+
+Route::get('/products/new', 'ProductController@showRegisterForm')->name('product.showRegisterForm');
+Route::post('/products/new', 'ProductController@insert')->name('product.insert');
+
+Route::get('/products/{id}/edit', 'ProductController@showEditForm')->name('showEditForm');
+Route::post('/product/edit', 'ProductController@update')->name('product.update');
+
+Route::post('/product/{id}/delete', 'ProductController@delete')->name('product.delete');
