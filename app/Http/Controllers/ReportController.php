@@ -32,7 +32,7 @@ class ReportController extends Controller
 
         $total = $products->count();
 
-        $title = 'Produtos removidos do estoque';
+        $title = 'Produtos em estoque';
 
         return view('report.index',compact('products','total', 'title'));
     }
@@ -53,7 +53,7 @@ class ReportController extends Controller
 
         $total = $products->count();
 
-        $title = 'Produtos em estoque';
+        $title = 'Produtos removidos do estoque';
 
         return view('report.index',compact('products','total', 'title'));
     }
