@@ -28,9 +28,10 @@ class ReportController extends Controller
         $productsIn = $productsIn->where('created_at', 'like', $date.'%');
         $productItens = $productsIn->whereHas('product',function($query){
             return $query->where('active',1);
-        })->orderBy('created_at','desc')->paginate(15);
+        })->orderBy('created_at','desc');
 
         $total = $productItens->count();
+        $productItens = $productItens->paginate(15);        
         $title = 'Produtos em estoque';
         $labelData = 'Dt. Entrada';
 
@@ -48,10 +49,11 @@ class ReportController extends Controller
 
         $productsOut = $productsOut->where('created_at', 'like', $date.'%');
         $productItens   = $productsOut->whereHas('product',function($query){
-            return $query->where('active',1);
-        })->orderBy('created_at','desc')->paginate(15);
+            return $query->where('active',1)->select(['sku']);
+        })->orderBy('created_at','desc');
 
         $total = $productItens->count();
+        $productItens = $productItens->paginate(15);
         $title = 'Produtos removidos do estoque';
         $labelData = 'Dt. Saída';
 
