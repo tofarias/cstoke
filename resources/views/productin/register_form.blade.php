@@ -17,6 +17,7 @@
                     if( response.success == true ){
                         $('#manufacturer').val( response.manufacturer );
                         $('#model').val( response.model );
+                        $('#sku').val( response.sku );
                     }
                 }
             });
@@ -38,6 +39,11 @@
                         <div class="form-group">
                             {!! Form::label('produto', 'Produto:', ['class' => '']) !!}
                             {!! Form::select('product_id', $products, null, ['id' => 'product_id','placeholder' => 'Selecione', 'class' => 'form-control']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('sku', 'SKU:', ['class' => '']) !!}
+                            {!! Form::text('sku', '', ['id' => 'sku','class' => "form-control", 'readonly']) !!}
                         </div>
 
                         <div class="form-group">
@@ -66,6 +72,7 @@
                         </div>
 
                         {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
+                        
                     {!! Form::close() !!}
                 </div>
             </div>
