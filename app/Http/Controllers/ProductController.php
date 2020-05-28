@@ -25,8 +25,9 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with(['category','manufacturer'])->get();
+        $total = $products->count();
 
-        return view('product.index', compact('products'));
+        return view('product.index', compact('products','total'));
     }
 
     public function showRegisterForm()
@@ -79,6 +80,18 @@ class ProductController extends Controller
             'delete' => true,
             'id' => $product->id,
             'message' => 'Registro excluído com sucesso!'
+        ]);
+    }
+
+    public function ajaxFindProduct(Request $request)
+    {
+        $product = Product::findOrFail($request->id);
+
+        return response()->json([
+            'success' => true,
+            'id' => $product->id,
+            'manufacturer' => $product->manufacturer->name,
+            'model' => $product->model
         ]);
     }
 }
