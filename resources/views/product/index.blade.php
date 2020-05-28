@@ -38,19 +38,22 @@
                     <table class="table table-striped">
                         <thead class="thead-dark">
                             <tr align="center">
-                            <th scope="col">#</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Categoria</th>
-                            <th scope="col">Modelo</th>
-                            <th scope="col">Fabricante</th>
-                            <th scope="col">Ativo</th>
-                            <th scope="col">Ação</th>
+                                <th scope="col">#</th>
+                                <th scope="col">SKU</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Modelo</th>
+                                <th scope="col">Fabricante</th>
+                                <th scope="col">Ativo</th>
+                                <th scope="col">Dt. Cadastro</th>
+                                <th scope="col">Ação</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach( $products as $key => $product )
                             <tr title="{!! $product->id !!}">
                                 <th scope="row">{!! ($key+1) !!}</th>
+                                <td>{!! $product->sku !!}</td>
                                 <td>{!! $product->name !!}</td>
                                 <td>{!! $product->category->name !!}</td>
                                 <td>{!! $product->model !!}</td>
@@ -62,6 +65,7 @@
                                     <span class="badge badge-warning">NÃO</span>
                                     @endif
                                 </td>
+                                <td align="center">{!! $product->created_at->format('d/m/Y H:i') !!}</td>
                                 <td align="center">
                                     <a href="{!! route('showEditForm',$product->id) !!}"><button type="button" class="btn btn-sm btn-info">Editar</button></a>
                                     <button id="" delete="{!! $product->id !!}" type="button" class="btn-delete btn btn-sm btn-danger">Excluir</button>
@@ -70,6 +74,12 @@
                             @endforeach
                         </tbody>
                     </table>
+
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            {!! $products->links() !!}
+                        </div>
+                    </div>
 
                 </div>
             </div>
