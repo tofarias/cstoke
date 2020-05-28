@@ -79,6 +79,7 @@ class ProductController extends Controller
         return response()->json([
             'delete' => true,
             'id' => $product->id,
+            'total' => Product::where('active', 1)->count(),
             'message' => 'Registro excluído com sucesso!'
         ]);
     }
