@@ -18,7 +18,7 @@ class ProductOut extends Model
      * @var array
      */
     protected $fillable = [
-        'price', 'amount'
+        'price', 'amount','product_id'
     ];
     
 
