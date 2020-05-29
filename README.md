@@ -18,6 +18,10 @@ Laravel Framework 7
 #### Banco de Dados
 - MySQL 5.7
 
+<p align="center">
+  <img src="eer_cstoke.png" width="800" alt="Modelo EER">
+</p>
+
 ---
 
 ### Instalação
