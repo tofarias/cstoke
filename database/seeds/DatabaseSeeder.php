@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
 
         factory(CStoke\Product::class, 1)->create();
 
-        // factory(CStoke\ProductIn::class, 100)->create();
-        // factory(CStoke\ProductOut::class, 6)->create();
+        factory(CStoke\ProductIn::class, 100)->create();
+        factory(CStoke\ProductOut::class, 6)->create();
     }
 }
